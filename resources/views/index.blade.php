@@ -13,12 +13,16 @@
 </head>
 <body>
     <h1>Liste des élèves</h1>
+
+    {{-- Vue en liste --}}
     <ul>
+        {{-- Boucle qui affiche tous les étudiants et leurs infos --}}
         @foreach ($students as $student)
             <li>{{ $student->first_name }} {{ $student->last_name }}  |  {{ $student->date_of_birth }} | {{ $student->address }} | {{ $student->group->name }}</li>
         @endforeach
     </ul>
 
+    {{-- Vue en tableau --}}
     <table>
         <thead>
             <tr>
@@ -30,6 +34,7 @@
             </tr>
         </thead>
         <tbody>
+            {{-- Boucle qui affiche tous les étudiants et leurs infos --}}
             @foreach ($students as $student)
                 <tr>
                     <td>{{ $student->first_name }}</td>
@@ -42,11 +47,14 @@
         </tbody>
     </table>
 
-    <a href="{{ route('students.create') }}">
+    {{-- Lien vers le formulaire de création d'un nouvel élève --}}
+    <a href="{{ route('students.create') }}"> 
         <button>Ajouter un élève</button>
     </a>
 
     <h2>Classes</h2>
+
+    {{-- Bouton pour chaque classe qui mène vers sa page --}}
     @foreach($groups as $group)
         <a href="{{ route('groups.show', $group->id) }}">
             <button>{{ $group->name }}</button>
